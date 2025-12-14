@@ -77,6 +77,11 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m, nil
 
 		case "enter":
+			// if file is open
+			if m.currentFile != nil {
+				break
+			}
+
 			// todo : create file
 			fileName := m.newFileInput.Value()
 			if fileName != "" {
@@ -122,7 +127,7 @@ func (m Model) View() string {
 
 	welcome := style.Render("WELCOME TO TOTION 📝")
 
-	help := "Ctrl+N: new file | Ctrl+L: list | Esc: back/save | Ctrl+Q: quit"
+	help := "Ctrl+N: new file | Ctrl+L: list | Ctrl+S: save | Esc: back/save | Ctrl+Q: quit"
 
 	view := ""
 	if m.isCreateFileInputVisible {
