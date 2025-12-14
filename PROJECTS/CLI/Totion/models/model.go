@@ -42,6 +42,40 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			// fmt.Println("Key : ", msg)
 			m.isCreateFileInputVisible = true
 			return m, nil
+
+		case "ctrl+s", "esc":
+			// textarea value -> write it in that file and close it
+
+			if m.currentFile == nil { // If NO file is open, do nothing
+				break
+			}
+
+			if err := m.currentFile.Truncate(0); err != nil {
+				fmt.Println("Can not save the file :(")
+				return m, nil
+			}
+
+			if _, err := m.currentFile.Seek(0, 0); err != nil {
+				fmt.Println("Can not save the file :(")
+				return m, nil
+			}
+
+			// write into file
+			if _, err := m.currentFile.WriteString(m.notetextarea.Value()); err != nil {
+				fmt.Println("Can not save the file :(")
+				return m, nil
+			}
+
+			if err := m.currentFile.Close(); err != nil {
+				fmt.Println("Can not close the file :(")
+				return m, nil
+			}
+
+			m.currentFile = nil
+			m.notetextarea.SetValue("")
+
+			return m, nil
+
 		case "enter":
 			// todo : create file
 			fileName := m.newFileInput.Value()
