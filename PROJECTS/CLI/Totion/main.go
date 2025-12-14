@@ -6,7 +6,12 @@ import (
 
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 	"github.com/thepravin/totion/models"
+)
+
+var (
+	cursorStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("205"))
 )
 
 func initializeMode() models.Model {
@@ -16,6 +21,8 @@ func initializeMode() models.Model {
 	ti.Focus()
 	ti.CharLimit = 156
 	ti.Width = 40
+	ti.Cursor.Style = cursorStyle
+	ti.PromptStyle = cursorStyle
 
 	return models.NewMessage(ti, false)
 }
