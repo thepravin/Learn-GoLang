@@ -1,6 +1,11 @@
 package models
 
-import tea "github.com/charmbracelet/bubbletea"
+import (
+	"fmt"
+
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
+)
 
 type Model struct {
 	MSG string
@@ -31,7 +36,20 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m Model) View() string {
-	return m.MSG
+	var style = lipgloss.NewStyle().
+		Bold(true).
+		Foreground(lipgloss.Color("16")).
+		Background(lipgloss.Color("205")).
+		PaddingLeft(2).
+		PaddingRight(2)
+
+	welcome := style.Render("WELCOME TO TOTION 📝")
+
+	help := "Ctrl+N: new file | Ctrl+L: list | Esc: back/save | Ctrl+Q: quit"
+
+	view := ""
+
+	return fmt.Sprintf("\n%s\n\n%s\n\n%s", welcome, view, help)
 }
 
 func NewMessage(initialMsg string) Model {
