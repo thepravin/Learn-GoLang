@@ -23,6 +23,7 @@ func initializeMode() models.Model {
 	ti.Width = 40
 	ti.Cursor.Style = cursorStyle
 	ti.PromptStyle = cursorStyle
+	ti.TextStyle = cursorStyle
 
 	return models.NewMessage(ti, false)
 }
