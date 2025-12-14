@@ -2,20 +2,24 @@ package models
 
 import tea "github.com/charmbracelet/bubbletea"
 
-type MESSAGE struct {
+type Model struct {
 	MSG string
 }
 
-func (m MESSAGE) Init() tea.Cmd {
+func (m Model) Init() tea.Cmd {
 	return nil
 }
 
-func (m MESSAGE) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	return nil
+func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	return m, nil
 }
 
-func NewMessage(initialMsg string) MESSAGE {
-	return MESSAGE{
+func (m Model) View() string {
+	return m.MSG
+}
+
+func NewMessage(initialMsg string) Model {
+	return Model{
 		MSG: initialMsg,
 	}
 }

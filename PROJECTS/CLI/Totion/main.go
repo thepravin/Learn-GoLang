@@ -4,7 +4,7 @@ import (
 	"github.com/thepravin/totion/models"
 )
 
-func initializeMode() models.MESSAGE {
+func initializeMode() models.Model {
 	return models.NewMessage("I am pravin...")
 }
 
