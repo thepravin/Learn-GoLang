@@ -2,7 +2,7 @@ package services
 
 import (
 	"fmt"
-	"ginLearning/04_DB/models"
+	"ginLearning/05_Auth/models"
 
 	"gorm.io/gorm"
 )

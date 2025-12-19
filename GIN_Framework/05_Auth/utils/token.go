@@ -35,3 +35,21 @@ func ParseToken(jwtToken string) (*jwt.Token, error) {
 	return token, nil
 
 }
+
+func TokenCheck(jwtToken string) (jwt.MapClaims, error) {
+	token, err := ParseToken(jwtToken)
+	if err != nil {
+		return nil, errors.New("bad jwt token")
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !ok {
+		return nil, errors.New("bad jwt token")
+	}
+
+	if float64(time.Now().Unix()) > claims["exp"].(float64) {
+		return nil, errors.New("jwt token expired")
+	}
+
+	return claims, nil
+}

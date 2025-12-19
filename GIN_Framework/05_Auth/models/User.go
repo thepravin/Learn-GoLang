@@ -15,3 +15,13 @@ type Login struct {
 func (User) TableName() string {
 	return "users"
 }
+
+type Notes struct {
+	ID     uint   `json:"id" gorm:"primaryKey"`
+	Title  string `json:"title" gorm:"not null"`
+	Status bool   `json:"status" gorm:"default:false"`
+}
+
+func (Notes) TableName() string {
+	return "notes"
+}
