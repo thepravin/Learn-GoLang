@@ -3,6 +3,7 @@ package controllers
 import (
 	"ginLearning/05_Auth/models"
 	"ginLearning/05_Auth/services"
+	"ginLearning/05_Auth/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -40,9 +41,18 @@ func (a *AuthController) Login() gin.HandlerFunc {
 			})
 			return
 		}
+
+		token, err := utils.GenerateToken(user.Email, int(user.ID))
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"message": err.Error(),
+			})
+			return
+		}
+
 		c.JSON(http.StatusOK, gin.H{
 			"message": "User logged in successfully",
-			"user":    user,
+			"token":   token,
 		})
 	}
 }

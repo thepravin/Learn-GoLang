@@ -3,6 +3,7 @@ module ginLearning
 go 1.25.1
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.11.0
 	golang.org/x/crypto v0.46.0
 	gorm.io/driver/postgres v1.6.0
