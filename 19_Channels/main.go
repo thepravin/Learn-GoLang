@@ -1,5 +1,6 @@
 /*
 	- Channels are medium for the communicating goroutines or sharing the data between them.
+	- Channels work (FIFO) First in first out.
 
 	# Types of channels :
 
@@ -108,9 +109,11 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
+/*
 func worker(id int, jobs <-chan int, results chan<- int) {
 	for j := range jobs {
 		fmt.Printf("Worker %d started job %d\n", id, j)
@@ -171,5 +174,42 @@ func main() {
 			fmt.Println("ch2---- ", m2)
 		}
 	}
+
+}
+*/
+
+//-------------------------------------------------------------------
+
+func worker(url string, wg *sync.WaitGroup, resultChan chan string) {
+	defer wg.Done()
+
+	time.Sleep(time.Millisecond * 50)
+
+	fmt.Printf("image processed: %s\n", url)
+
+	resultChan <- url
+}
+
+func main() {
+	var wg sync.WaitGroup
+	resultChan := make(chan string, 5)
+
+	startTime := time.Now()
+
+	wg.Add(5)
+	go worker("image_1.png", &wg, resultChan)
+	go worker("image_2.png", &wg, resultChan)
+	go worker("image_3.png", &wg, resultChan)
+	go worker("image_4.png", &wg, resultChan)
+	go worker("image_5.png", &wg, resultChan)
+
+	wg.Wait()
+	close(resultChan) // otherwise, ERROR: fatal error: all goroutines are asleep - deadlock!
+
+	for result := range resultChan {
+		fmt.Printf("received: %s\n", result)
+	}
+
+	fmt.Printf("received: %s\n", time.Since(startTime))
 
 }
