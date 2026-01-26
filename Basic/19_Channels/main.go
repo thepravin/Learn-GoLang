@@ -2,6 +2,18 @@
 	- Channels are medium for the communicating goroutines or sharing the data between them.
 	- Channels work (FIFO) First in first out.
 
+	- You can use range to read from a channel until it is closed. This is a very common pattern in Go concurrency.
+
+	queue := make(chan string, 2)
+	queue <- "one"
+	queue <- "two"
+	close(queue) // Essential! Loop hangs forever if you don't close.
+
+	for msg := range queue {
+		fmt.Println(msg)
+	}
+
+
 	# Types of channels :
 
 */

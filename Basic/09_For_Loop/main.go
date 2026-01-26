@@ -39,4 +39,20 @@ func main() {
 		fmt.Printf("Index: %d, Character: %c\n", index, char)
 	}
 
+	// A classic mistake is trying to modify the value variable v. The variable v is a copy of the data. Changing it does nothing to the original slice.
+
+	nums := []int{10, 20}
+
+	for _, v := range nums {
+		v = v + 5 // This only changes the local copy 'v'
+	}
+	fmt.Println(nums) // [10 20] -> No change
+
+	//-----
+
+	for i := range nums {
+		nums[i] = nums[i] + 5 // Access the array directly
+	}
+	fmt.Println(nums) // [15 25] -> Changed!
+
 }
