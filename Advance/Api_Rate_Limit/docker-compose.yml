@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: mysql:8.0
+    container_name: go-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: demo
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: app_pass
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      # Format is HOST:CONTAINER
+      - "3606:3306"
+    volumes:
+      # Persist data so it isn't lost when the container stops
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: go-app
+    ports:
+      - "8090:8090"
+    env_file:
+      - .env.docker
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:

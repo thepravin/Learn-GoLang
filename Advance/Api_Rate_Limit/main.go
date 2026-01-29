@@ -6,9 +6,11 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"gorm.io/driver/mysql"
@@ -33,7 +35,10 @@ type RateLimit struct {
 var db *gorm.DB
 
 func initDB() {
-	dsn := "app_user:app_pass@tcp(127.0.0.1:3606)/demo?parseTime=true"
+	if err := godotenv.Load(); err != nil {
+		log.Println("No .env file found or error loading it")
+	}
+	dsn := os.Getenv("DATABASE_URL")
 
 	database, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
