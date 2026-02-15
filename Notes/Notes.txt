@@ -1,1 +1,21 @@
 1. go mod init <projectName>
+
+
+# Go Memory 
+
+- Go, memory is automatically managed using a garbage collector, so explicit freeing of memory is not usually necessary.
+
+- One important aspect of the Go memory model is that it allows multiple threads to access shared memory concurrently. This feature allows Go programs to take advantage of multiple CPU cores and improve performance. Access to the shared data within memory should be serialized.
+
+- The Go memory model also requires that certain memory operations be performed in a specific order to ensure that the program behaves correctly. For example, a write operation must occur before a read operation which depends on the written value.
+
+
+# How to see documentaion :
+- go doc fmt 
+- go doc fmt.Println
+
+
+- A library is a Go package that won’t create an executable file but contains code that we can use for our program. 
+
+- float8 is not builtin data type in go.
+- complex64 is builtin type in go.
