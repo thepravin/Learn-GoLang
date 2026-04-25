@@ -1,5 +1,6 @@
 1. go mod init <projectName>
 
+//---------------------------------------------------------------------------------------------------------------------------------------
 
 # Go Memory 
 
@@ -9,13 +10,42 @@
 
 - The Go memory model also requires that certain memory operations be performed in a specific order to ensure that the program behaves correctly. For example, a write operation must occur before a read operation which depends on the written value.
 
+//---------------------------------------------------------------------------------------------------------------------------------------
 
 # How to see documentaion :
 - go doc fmt 
 - go doc fmt.Println
 
+//---------------------------------------------------------------------------------------------------------------------------------------
 
 - A library is a Go package that won’t create an executable file but contains code that we can use for our program. 
 
 - float8 is not builtin data type in go.
 - complex64 is builtin type in go.
+
+//---------------------------------------------------------------------------------------------------------------------------------------
+
+# Error Handling :
+- When a function encounters a critical error or inconsistency that it cannot recover from, it can call panic().
+- The recover function allows a program to regain control after a panic. recover can retrieve the value passed to panic() and resume normal execution, preventing the program from terminating. This provides a way to bring the program back to a recoverable state when possible. To use recover, we’ll need to create a deferred, anonymous function and call recover() within it. 
+- In Go, when an error is printed (for example, using fmt.Println(err)), Go automatically calls the Error() method of the error type. This happens because the error interface requires a type to have an Error() string method.
+- fmt.Errorf to add context to an existing error. This enriches the error message with relevant details, making it easier to diagnose issues.
+- errors.Is(err, target error) checks if the given error err is identical to another error instance specified as the second argument. Even if err is wrapped using fmt.Errorf(err), error.Is(err, error) can correctly identify its underlying type and value.
+- errors.As(err, target interface{}) attempts to unwrap the error err into a variable of a specified type (interface{}). If successful, it assigns the unwrapped value to the variable and returns true. Otherwise, it returns false and leaves the variable unchanged.
+
+- fmt.Print prints the message and continues execution.
+- fmt.Printf prints the formatted message and continues execution.
+- fmt.Println prints the message and adds a new line at the end. Then it continues execution.
+
+- log.Println prints the message and continues execution.
+- log.Printf prints the formatted message and continues execution.
+- log.Println prints the message and adds a new line at the end. Then it continues execution.
+
+- log.Fatal prints the message and then calls os.Exit(1), which terminates the program.
+- log.Fatalf prints the formatted message and then calls os.Exit(1), which terminates the program.
+- log.Fatalln prints the message, adds a new line, and then calls os.Exit(1), which terminates the program.
+
+- panic prints the message and begins unwinding the stack, running deferred 
+functions before terminating the program. In some circumstances, a panic can be recovered from using the recover function.
+
+//---------------------------------------------------------------------------------------------------------------------------------------
