@@ -31,4 +31,8 @@ func main() {
 	const pi = 3.14
 	fmt.Println(pi)
 
+	var a rune = 23 // 'rune' is alias of int32
+	var b byte = 24 // 'byte' is alias of int8
+	fmt.Println("a : ", a, " ", "b : ", b)
+
 }
