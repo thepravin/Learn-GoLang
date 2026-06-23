@@ -20,4 +20,8 @@ func main() {
 	defer fmt.Println("This will be executed second")
 	defer fmt.Println("This will be executed first")
 	fmt.Println("Middle of the program")
+
+	/*
+		- In case of panic defer statements/func will exiecute
+	*/
 }

@@ -4,6 +4,15 @@ import "fmt"
 
 func main() {
 
+	// Data types
+	var i int
+	var f float64
+	var b bool
+	var s string
+	fmt.Printf("%v %v %v %q\n", i, f, b, s)
+
+	// variables
+
 	var name string = "Pravin"
 	var name2 = "Pravin 2"
 	name3 := "Pravin 3"
@@ -32,7 +41,7 @@ func main() {
 	fmt.Println(pi)
 
 	var a rune = 23 // 'rune' is alias of int32
-	var b byte = 24 // 'byte' is alias of int8
-	fmt.Println("a : ", a, " ", "b : ", b)
+	var c byte = 24 // 'byte' is alias of int8
+	fmt.Println("a : ", a, " ", "b : ", c)
 
 }

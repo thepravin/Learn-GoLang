@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 /*
 type Person struct {
@@ -40,8 +43,30 @@ func main() {
 
 */
 
-//*********************************** Struct Embedding *****************************************
+/************************ Attach methods to struct ************************/
 
+type Vertex struct {
+	X, Y int
+}
+
+var (
+	v1 = Vertex{1, 2}  // has type Vertex
+	v2 = Vertex{X: 1}  // Y:0 is implicit
+	v3 = Vertex{}      // X:0 and Y:0
+	p  = &Vertex{1, 2} // has type *Vertex
+)
+
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(float64(v.X)*float64(v.X) + float64(v.Y)*float64(v.Y))
+}
+
+func main() {
+	v := Vertex{3, 4}
+	fmt.Println(v.Abs())
+}
+
+//*********************************** Struct Embedding *****************************************
+/*
 type Person struct {
 	FirstName string
 	LastName  string
@@ -87,3 +112,4 @@ func main() {
 
 	fmt.Println(employee)
 }
+*/

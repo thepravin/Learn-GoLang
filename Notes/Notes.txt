@@ -1,6 +1,8 @@
 1. go mod init <projectName>
 
-//---------------------------------------------------------------------------------------------------------------------------------------
+- variadic function golang
+
+//-----------------------------------------------------------------------------------------------------
 
 # Go Memory 
 
@@ -10,20 +12,20 @@
 
 - The Go memory model also requires that certain memory operations be performed in a specific order to ensure that the program behaves correctly. For example, a write operation must occur before a read operation which depends on the written value.
 
-//---------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
 
 # How to see documentaion :
 - go doc fmt 
 - go doc fmt.Println
 
-//---------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
 
 - A library is a Go package that won’t create an executable file but contains code that we can use for our program. 
 
 - float8 is not builtin data type in go.
 - complex64 is builtin type in go.
 
-//---------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------
 
 # Error Handling :
 - When a function encounters a critical error or inconsistency that it cannot recover from, it can call panic().
@@ -48,4 +50,8 @@
 - panic prints the message and begins unwinding the stack, running deferred 
 functions before terminating the program. In some circumstances, a panic can be recovered from using the recover function.
 
-//---------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+
+# Map vs struct
+- range can use with map to iterate but every time when iterate sequece is different but, can't use with struct. 
+- with map can't use poiter because it dosen't have fix memory location every time when we add new key-values memory location keep changing, but with struct can use pointer because each variable has memory presence so, we can refer it.

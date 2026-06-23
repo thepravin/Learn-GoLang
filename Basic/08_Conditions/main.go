@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+	"time"
+)
 
 func main() {
 	x := 10
@@ -50,6 +54,28 @@ func main() {
 		fmt.Println("Warm")
 	default:
 		fmt.Println("Hot")
+	}
+
+	// Example 4:
+	switch os := runtime.GOOS; os {
+	case "darwin":
+		fmt.Println("OS X.")
+	case "linux":
+		fmt.Println(("Linux."))
+	default:
+		fmt.Printf("%s.\n", os)
+	}
+
+	// Example 5:
+	t := time.Now()
+	switch { // without conditon works as a if-else block
+	case t.Hour() < 12:
+		fmt.Println("Good Morning")
+	case t.Hour() < 17:
+		fmt.Println("Good afternoon")
+
+	default:
+		fmt.Println("Good Day......")
 	}
 
 }

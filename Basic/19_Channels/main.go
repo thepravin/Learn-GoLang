@@ -1,5 +1,5 @@
 /*
-	- Channels are medium for the communicating goroutines or sharing the data between them.
+	- Channels are medium ( or container of datatype) for the communicating goroutines or sharing the data between them.
 	- Channels work (FIFO) First in first out.
 
 	- You can use range to read from a channel until it is closed. This is a very common pattern in Go concurrency.

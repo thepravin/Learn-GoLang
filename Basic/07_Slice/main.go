@@ -8,9 +8,37 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
+	// Slice deceleration
+	q := []int{2, 3, 4, 5, 6}
+	fmt.Println(q)
+
+	r := []bool{true, false, true, false, false}
+	fmt.Println(r)
+
+	s := []struct {
+		i int
+		b bool
+	}{
+		{2, true},
+		{3, false},
+		{4, true},
+		{5, false},
+		{6, false},
+	}
+	fmt.Println(s)
+
+	slice1 := q[1:]
+	slice2 := q[:5]
+	slice3 := q[1:3]
+	fmt.Println(slice1)
+	fmt.Println(slice2)
+	fmt.Println(slice3)
+
 	numbers := []int{1, 2, 3, 4, 5}
 
 	fmt.Println("Slice : ", numbers)
